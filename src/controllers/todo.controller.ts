@@ -1,8 +1,12 @@
-import { NextFunction, Request, RequestHandler, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 
 import Todo from '../models/todo.model';
+import {
+  TCreateTodoBody,
 
-export const getTodos: RequestHandler = async (
+} from '../schemas/todo.schemas';
+
+export const getTodos = async (
   _req: Request<unknown, unknown, unknown, unknown>,
   res: Response,
   next: NextFunction
@@ -10,25 +14,22 @@ export const getTodos: RequestHandler = async (
   try {
     const todos = await Todo.find();
 
-    res.status(200).json(todos);
+    return res.status(200).json(todos);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
 
-export const createTodo: RequestHandler = async (
-  _req: Request<unknown, unknown, unknown, unknown>,
+export const createTodo = async (
+  req: Request<unknown, unknown, TCreateTodoBody, unknown>,
   res: Response,
   next: NextFunction
 ) => {
   try {
-    const newTodo = await Todo.create({
-      title: 'Test title',
-      description: 'Test description',
-    });
+    const newTodo = await Todo.create(req.body);
 
-    res.status(200).json(newTodo);
+    return res.status(201).json(newTodo);
   } catch (error) {
-    next(error);
+    return next(error);
   }
 };
