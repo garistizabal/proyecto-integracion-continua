@@ -7,3 +7,11 @@ export const todoId = z
   .regex(MONGO_ID_REGEX, { message: 'Invalid todoId' });
 export const description = z.string({ required_error: 'Description is required' });
 export const isCompleted = z.boolean().optional();
+
+export const createTodoSchema = z.object({
+  body: z.object({
+    description,
+    isCompleted,
+  }),
+});
+export type TCreateTodoBody = z.infer<typeof createTodoSchema>['body'];
