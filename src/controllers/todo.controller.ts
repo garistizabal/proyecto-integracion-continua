@@ -111,7 +111,47 @@ export const toggleTodo = async (
 
     await todo.save();
 
+    const newTodo = await Todo.create(req.body);
+
+    return res.status(201).json(newTodo);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export const getOneTodo = async (
+  req: Request<TGetOneTodoParams, unknown, unknown, unknown>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { todoId } = req.params;
+
+    const todo = await Todo.findById(todoId);
+
+    if (!todo) throw createError.NotFound(`Todo with id ${todoId} not found`);
+
     return res.status(200).json(todo);
+  } catch (error) {
+    return next(error);
+  }
+};
+
+export const updateTodo = async (
+  req: Request<TUpdateTodoParams, unknown, TUpdateTodoBody, unknown>,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const { todoId } = req.params;
+
+    const updatedTodo = await Todo.findByIdAndUpdate(todoId, req.body, {
+      new: true,
+    });
+
+    if (!updatedTodo) throw createError.NotFound(`Todo with id ${todoId} not found`);
+
+    return res.status(200).json(updatedTodo);
   } catch (error) {
     return next(error);
   }

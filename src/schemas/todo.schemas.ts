@@ -48,3 +48,4 @@ export const toggleTodoSchema = z.object({
   }),
 });
 export type TToggleTodoParams = z.infer<typeof toggleTodoSchema>['params'];
+export type TUpdateTodoParams = z.infer<typeof updateTodoSchema>['params'];
