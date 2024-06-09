@@ -15,3 +15,22 @@ export const createTodoSchema = z.object({
   }),
 });
 export type TCreateTodoBody = z.infer<typeof createTodoSchema>['body'];
+
+export const getOneTodoSchema = z.object({
+  params: z.object({
+    todoId,
+  }),
+});
+export type TGetOneTodoParams = z.infer<typeof getOneTodoSchema>['params'];
+
+export const updateTodoSchema = z.object({
+  params: z.object({
+    todoId,
+  }),
+  body: z.object({
+    description,
+    isCompleted,
+  }),
+});
+export type TUpdateTodoBody = z.infer<typeof updateTodoSchema>['body'];
+export type TUpdateTodoParams = z.infer<typeof updateTodoSchema>['params'];
