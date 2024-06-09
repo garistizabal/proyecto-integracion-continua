@@ -8,6 +8,13 @@ Requisitos
 - [Node.js](https://nodejs.org/en) (opcional, solo si deseas ejecutar el proyecto localmente sin Docker)
 - [Mongo Atlas](https://www.mongodb.com/atlas) (opcional, solo si deseas ejecutar el proyecto localmente sin Docker)
 
+## Grupo colaborativo
+
+- Santiago Gómez Arbeláez
+- Duvan Humberto Murillo Díaz
+- Gabriel Fernando Aristizábal López
+- Sergio Iván López Poveda
+
 ## Configuración del Proyecto
 
 Toma de referencia el archivo `.env.example` y crea un archivo `.env` en la raíz del proyecto con las variables de entorno indicadas.
