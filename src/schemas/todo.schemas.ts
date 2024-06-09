@@ -34,3 +34,18 @@ export const updateTodoSchema = z.object({
 });
 export type TUpdateTodoBody = z.infer<typeof updateTodoSchema>['body'];
 export type TUpdateTodoParams = z.infer<typeof updateTodoSchema>['params'];
+
+export const deleteTodoSchema = z.object({
+  params: z.object({
+    todoId,
+  }),
+});
+export type TDeleteTodoParams = z.infer<typeof deleteTodoSchema>['params'];
+
+export const toggleTodoSchema = z.object({
+  params: z.object({
+    todoId,
+  }),
+});
+export type TToggleTodoParams = z.infer<typeof toggleTodoSchema>['params'];
+export type TUpdateTodoParams = z.infer<typeof updateTodoSchema>['params'];
